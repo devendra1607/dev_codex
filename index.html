@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NovaCart | Smart Everyday Shopping</title>
+    <style>
+      :root {
+        --bg: #f8fafc;
+        --surface: #ffffff;
+        --text: #0f172a;
+        --muted: #64748b;
+        --brand: #2563eb;
+        --brand-dark: #1d4ed8;
+        --success: #16a34a;
+        --radius: 18px;
+        --shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+          Helvetica, Arial, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        width: min(1100px, 92vw);
+        margin-inline: auto;
+      }
+
+      .topbar {
+        background: #0f172a;
+        color: #e2e8f0;
+        font-size: 0.92rem;
+      }
+
+      .topbar .container {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.45rem 0;
+      }
+
+      header {
+        background: var(--surface);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        box-shadow: 0 2px 16px rgba(15, 23, 42, 0.06);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.95rem 0;
+      }
+
+      .logo {
+        font-weight: 800;
+        font-size: 1.25rem;
+      }
+
+      .logo span {
+        color: var(--brand);
+      }
+
+      nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        gap: 1.25rem;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 0.78rem 1.1rem;
+        border-radius: 12px;
+        font-weight: 600;
+        transition: 0.25s ease;
+      }
+
+      .btn-primary {
+        background: var(--brand);
+        color: #fff;
+      }
+
+      .btn-primary:hover {
+        background: var(--brand-dark);
+      }
+
+      .btn-outline {
+        border: 1px solid #cbd5e1;
+        color: var(--text);
+      }
+
+      .hero {
+        padding: 4rem 0 3.5rem;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.15fr 1fr;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        color: var(--brand);
+        background: #dbeafe;
+        padding: 0.25rem 0.7rem;
+        border-radius: 999px;
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+      }
+
+      h1,
+      h2,
+      h3 {
+        line-height: 1.2;
+        margin-top: 0.5rem;
+      }
+
+      h1 {
+        font-size: clamp(2rem, 4vw, 3.1rem);
+        margin-bottom: 0.8rem;
+      }
+
+      .hero p {
+        color: var(--muted);
+        margin-bottom: 1.2rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        margin-bottom: 1.4rem;
+      }
+
+      .stats {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .stat {
+        background: var(--surface);
+        border-radius: 14px;
+        padding: 0.8rem 1rem;
+        min-width: 150px;
+        box-shadow: var(--shadow);
+      }
+
+      .stat strong {
+        display: block;
+        font-size: 1.25rem;
+      }
+
+      .hero-card {
+        background: linear-gradient(135deg, #eff6ff, #ffffff);
+        border-radius: var(--radius);
+        padding: 1.2rem;
+        box-shadow: var(--shadow);
+      }
+
+      .hero-card img {
+        width: 100%;
+        border-radius: 12px;
+        height: 220px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .hero-card .offer {
+        margin-top: 0.9rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      section {
+        padding: 2.8rem 0;
+      }
+
+      .section-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        margin-bottom: 1.1rem;
+      }
+
+      .section-title p {
+        color: var(--muted);
+        margin: 0;
+      }
+
+      .products {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+      }
+
+      .product-card {
+        background: var(--surface);
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+      }
+
+      .product-card img {
+        width: 100%;
+        height: 170px;
+        object-fit: cover;
+      }
+
+      .product-body {
+        padding: 0.9rem;
+      }
+
+      .price {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .price strong {
+        font-size: 1.1rem;
+      }
+
+      .price small {
+        color: var(--success);
+        font-weight: 700;
+      }
+
+      .categories {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+      }
+
+      .category {
+        background: var(--surface);
+        padding: 1.2rem;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+
+      .testimonials {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+      }
+
+      .quote {
+        background: var(--surface);
+        border-left: 4px solid var(--brand);
+        border-radius: 12px;
+        padding: 1rem;
+        box-shadow: var(--shadow);
+      }
+
+      .cta {
+        background: linear-gradient(120deg, #2563eb, #1e40af);
+        color: #fff;
+        border-radius: 20px;
+        padding: 1.8rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .cta input {
+        padding: 0.7rem 0.85rem;
+        border-radius: 10px;
+        border: none;
+        min-width: 230px;
+      }
+
+      footer {
+        padding: 2rem 0;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      @media (max-width: 960px) {
+        .hero-grid,
+        .products,
+        .categories,
+        .testimonials {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        nav ul {
+          display: none;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .hero-grid,
+        .products,
+        .categories,
+        .testimonials,
+        .cta {
+          grid-template-columns: 1fr;
+          display: grid;
+        }
+
+        .cta {
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="container">
+        <span>Free shipping on orders over $49</span>
+        <span>Support: help@novacart.com</span>
+      </div>
+    </div>
+
+    <header>
+      <div class="container nav">
+        <a class="logo" href="#">Nova<span>Cart</span></a>
+        <nav>
+          <ul>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#categories">Categories</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <a href="#products" class="btn btn-outline">Shop Now</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <span class="eyebrow">NEW SEASON COLLECTION</span>
+            <h1>Everything You Need for Modern, Smart Living.</h1>
+            <p>
+              Discover premium electronics, home accessories, lifestyle essentials,
+              and daily deals in one clean shopping experience.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#products">Explore Products</a>
+              <a class="btn btn-outline" href="#categories">Browse Categories</a>
+            </div>
+            <div class="stats">
+              <div class="stat">
+                <strong>1,200+</strong>
+                Curated products
+              </div>
+              <div class="stat">
+                <strong>98%</strong>
+                Customer satisfaction
+              </div>
+              <div class="stat">
+                <strong>24/7</strong>
+                Friendly support
+              </div>
+            </div>
+          </div>
+
+          <aside class="hero-card">
+            <img
+              src="https://images.unsplash.com/photo-1526178613658-3f1622045557?auto=format&fit=crop&w=1200&q=80"
+              alt="Featured smart products"
+            />
+            <div class="offer">
+              <div>
+                <strong>Weekend Mega Sale</strong><br />
+                Save up to 40% this week only
+              </div>
+              <a class="btn btn-primary" href="#products">View Deals</a>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="products">
+        <div class="container">
+          <div class="section-title">
+            <div>
+              <h2>Featured Products</h2>
+              <p>High-rated picks customers buy again and again.</p>
+            </div>
+            <a href="#" class="btn btn-outline">See All</a>
+          </div>
+
+          <div class="products">
+            <article class="product-card">
+              <img
+                src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1000&q=80"
+                alt="Smartphone"
+              />
+              <div class="product-body">
+                <h3>Nova X Pro Smartphone</h3>
+                <p>128GB • Dual Camera • 5G</p>
+                <div class="price"><strong>$699</strong><small>In Stock</small></div>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <img
+                src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1000&q=80"
+                alt="Wireless headphones"
+              />
+              <div class="product-body">
+                <h3>Pulse Wireless Headphones</h3>
+                <p>Noise Canceling • 30hr Battery</p>
+                <div class="price"><strong>$149</strong><small>Best Seller</small></div>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <img
+                src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?auto=format&fit=crop&w=1000&q=80"
+                alt="Smart watch"
+              />
+              <div class="product-body">
+                <h3>AeroFit Smart Watch</h3>
+                <p>Heart Rate • GPS • Waterproof</p>
+                <div class="price"><strong>$229</strong><small>20% Off</small></div>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <img
+                src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=1000&q=80"
+                alt="Bluetooth speaker"
+              />
+              <div class="product-body">
+                <h3>Echo Mini Speaker</h3>
+                <p>360° Sound • Voice Assistant</p>
+                <div class="price"><strong>$79</strong><small>Limited</small></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="categories">
+        <div class="container">
+          <div class="section-title">
+            <div>
+              <h2>Shop by Category</h2>
+              <p>Find what you need faster with curated collections.</p>
+            </div>
+          </div>
+          <div class="categories">
+            <div class="category">
+              <h3>Electronics</h3>
+              <p>Phones, wearables, headphones, and smart gadgets.</p>
+            </div>
+            <div class="category">
+              <h3>Home & Kitchen</h3>
+              <p>Appliances and tools made for convenience and comfort.</p>
+            </div>
+            <div class="category">
+              <h3>Lifestyle</h3>
+              <p>Daily essentials, wellness gear, and travel accessories.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="reviews">
+        <div class="container">
+          <div class="section-title">
+            <div>
+              <h2>What Customers Say</h2>
+              <p>Trusted by thousands of happy shoppers.</p>
+            </div>
+          </div>
+
+          <div class="testimonials">
+            <blockquote class="quote">
+              “Smooth checkout, fast delivery, and product quality is excellent.”
+              <footer>— Amanda R.</footer>
+            </blockquote>
+            <blockquote class="quote">
+              “The product pages made it super easy to compare options quickly.”
+              <footer>— Jason M.</footer>
+            </blockquote>
+            <blockquote class="quote">
+              “Great prices and responsive support team. Highly recommended.”
+              <footer>— Priya S.</footer>
+            </blockquote>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="container">
+          <div class="cta">
+            <div>
+              <h2>Get Weekly Deals in Your Inbox</h2>
+              <p>Join our newsletter for new arrivals and members-only discounts.</p>
+            </div>
+            <form>
+              <label for="email" class="sr-only">Email</label>
+              <input id="email" type="email" placeholder="Enter your email" />
+              <button class="btn btn-primary" type="submit">Subscribe</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        © 2026 NovaCart. All rights reserved. | Secure Payments | Easy Returns
+      </div>
+    </footer>
+  </body>
+</html>
